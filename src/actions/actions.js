@@ -1,8 +1,8 @@
 
-export const getAllUsers = async (page = 1) => {
+export const getAllUsers = async () => {
     let payload = null;
     try {
-        let users = await fetch(`https://reqres.in/api/users?page=${page}`);
+        let users = await fetch(`https://reqres.in/api/users?page=1`);
         payload = await users.json();
     }
     catch (err) {
@@ -54,4 +54,56 @@ export const createUser = async (name, job) => {
         payload: payload.data
     }
 }
+
+//////////////////////////////////////
+
+export const Next = async (page) => {
+    let payload = null;
+    try {
+        let users = await fetch(`https://reqres.in/api/users?page=${page + 1}`);
+        payload = await users.json();
+    }
+    catch (err) {
+        console.error(err);
+    }
+
+    if (payload == null || payload == [] || payload == {}) {
+        return { type: "GO_TO_DEFAULT" };
+    }
+
+    return {
+        type: "NEXT",
+        payload: null
+    }
+
+}
+//////////////////////////////////////
+
+
+//////////////////////////////////////
+
+export const Previous = async (page) => {
+    let payload = null;
+    try {
+        if (page == 1) throw Error("First Page");
+        let users = await fetch(`https://reqres.in/api/users?page=${page - 1}`);
+        payload = await users.json();
+    }
+    catch (err) {
+        console.error(err);
+    }
+
+    if (payload == null || payload == [] || payload == {}) {
+        return { type: "GO_TO_DEFAULT" };
+    }
+
+
+    return {
+        type: "PREVIOUS",
+        payload: null
+    }
+
+}
+//////////////////////////////////////
+
 
