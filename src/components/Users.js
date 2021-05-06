@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, Text, View, FlatList, ListItem } from 'react-native';
+import { View, Text, Button, Right, Left, Icon, ListItem } from 'native-base';
+
+import { StyleSheet, FlatList } from 'react-native';
 import { context, UsersProvider } from '../context/cont';
 import { getAllUsers, getUserDetails } from '../actions/actions';;
 //import { Container, Header, Content, List, ListItem, Text, View } from 'native-base';
@@ -20,11 +22,29 @@ const Users = () => {
     }, []);
 
     return (
-        <View>
-            <Text>{state.usersList[0].first_name}</Text>
+        <FlatList
+            data={state.usersList}
+            renderItem={({ item }) => {
+                return <ListItem>
+                    <Left>
+                        <Text>{item.first_name}</Text>
+                    </Left>
+                    <Right>
+                        <Icon name="person" onPress={
+                            () => {
+                                // navigation.navigate('Details', { id: item.id })
+                            }
+                        } />
+                    </Right>
+                </ListItem>
+            }}
+            ItemSeparatorComponent={ItemSeparator}
+            keyExtractor={(item) => item.id.toString()}
+            ListEmptyComponent={EmptyList}
 
-        </View>
-    );
+        />
+    )
+
     // return (
     //     <View>
     //         <StatusBar hidden={true}></StatusBar>
@@ -56,3 +76,14 @@ const Users = () => {
 }
 
 export default Users;
+
+const EmptyList = () => {
+    return <Text style={{ textAlign: 'center' }}>
+        No users available
+    </Text>
+}
+
+const ItemSeparator = () => {
+    return (<ListItem itemDivider>
+    </ListItem>)
+}
