@@ -1,13 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Details from './src/components/Details';
+import Users from './src/components/Users';
+import { UsersProvider } from './src/context/cont';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <UsersProvider>
+      <View>
+        <Users></Users>
+        <StatusBar style="auto" />
+      </View>
+    </UsersProvider>
   );
 }
 
