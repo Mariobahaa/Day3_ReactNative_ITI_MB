@@ -10,6 +10,9 @@ export const usersReducer = (state = {}, action) => {
                 ...state, userDetails: action.payload
             }
             break;
+        case 'CREATE_USER':
+            return state;
+            break;
         default:
             return state;
             break;
