@@ -27,7 +27,10 @@ export const usersReducer = (state = {}, action) => {
         //////////////////////////////////////
 
         case 'CREATE_USER':
-            return state;
+            console.log('creating user');
+            return {
+                ...state, resUser: action.payload
+            };
             break;
         default:
             return state;

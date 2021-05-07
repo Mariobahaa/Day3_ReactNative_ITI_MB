@@ -56,7 +56,7 @@ const Users = ({ navigation }) => {
                         <Text>{item.first_name}</Text>
                     </Left>
                     <Right>
-                        <Icon name="person" onPress={
+                        <Icon name="person" info onPress={
                             () => {
                                 navigation.navigate('Details', { id: item.id })
                             }

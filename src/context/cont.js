@@ -8,7 +8,7 @@ context.displayName = 'users';
 
 
 export const UsersProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(usersReducer, { usersList: [], userDetails: null, page: 1 })
+    const [state, dispatch] = useReducer(usersReducer, { usersList: [], userDetails: null, page: 1, resUser: {} })
     return <context.Provider value={{ state, dispatch }}>
         {children}
     </context.Provider>

@@ -37,7 +37,7 @@ export const createUser = async (name, job) => {
     try {
         let user = await fetch(`https://reqres.in/api/users/`, {
             method: 'POST',
-            //mode: 'cors',
+            mode: 'cors',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -48,10 +48,10 @@ export const createUser = async (name, job) => {
     catch (err) {
         console.error(err);
     }
-
+    console.log(payload);
     return {
         type: "CREATE_USER",
-        payload: payload.data
+        payload: payload
     }
 }
 
