@@ -15,11 +15,11 @@ const Users = ({ navigation }) => {
             const resolvePromise = async (action) => {
                 dispatch(await action)
             }
-            resolvePromise(getAllUsers());
+            resolvePromise(getAllUsers(state.page));
         }
         catch (err) { console.error(err) }
 
-    }, []);
+    }, [state.page]);
 
     NextPage = () => {
         try {

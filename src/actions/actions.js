@@ -1,8 +1,8 @@
 
-export const getAllUsers = async () => {
+export const getAllUsers = async (page) => {
     let payload = null;
     try {
-        let users = await fetch(`https://reqres.in/api/users?page=1`);
+        let users = await fetch(`https://reqres.in/api/users?page=${page}`);
         payload = await users.json();
     }
     catch (err) {
@@ -75,7 +75,7 @@ export const Next = async (page) => {
 
     console.log("Request Succeeded (Next)");
 
-    console.log(`payload: ${payload.data}`);
+    console.log(`payload: ${payload.data[0]['id']}`);
     return {
         type: "NEXT",
         payload: payload.data
