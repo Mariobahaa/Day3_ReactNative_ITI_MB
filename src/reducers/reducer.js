@@ -13,11 +13,13 @@ export const usersReducer = (state = {}, action) => {
         //////////////////////////////////////
 
         case 'NEXT':
+            console.log("Next in Reducer")
             return {
                 ...state, usersList: action.payload, page: state.page + 1
             };
             break;
         case 'PREVIOUS':
+
             return {
                 ...state, usersList: action.payload, page: (state.page - 1) >= 1 ? (state.page - 1) : state.page
             };

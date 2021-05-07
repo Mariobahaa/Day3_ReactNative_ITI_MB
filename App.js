@@ -7,6 +7,9 @@ import Users from './src/components/Users';
 import { UsersProvider } from './src/context/cont';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons'
+import 'react-native-gesture-handler';
 
 const Stack = createStackNavigator()
 

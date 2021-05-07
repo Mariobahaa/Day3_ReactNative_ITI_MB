@@ -21,6 +21,28 @@ const Users = ({ navigation }) => {
 
     }, []);
 
+    NextPage = () => {
+        try {
+            const resolvePromise = async (action) => {
+                dispatch(await action)
+            }
+            resolvePromise(Next())
+        }
+        catch (err) { console.error(err) }
+
+    };
+
+    PreviousPage = () => {
+        try {
+            const resolvePromise = async (action) => {
+                dispatch(await action)
+            }
+            resolvePromise(Previous())
+        }
+        catch (err) { console.error(err) }
+
+    };
+
     return (
         <FlatList
             data={state.usersList}
@@ -46,34 +68,6 @@ const Users = ({ navigation }) => {
         />
     )
 
-    // return (
-    //     <View>
-    //         <StatusBar hidden={true}></StatusBar>
-    //         <FlatList
-    //             data={state.Users}
-    //             renderItem={({ item }) => {
-    //                 return <ListItem>
-    //                     <Left>
-    //                         <Text>{item.first_name}</Text>
-    //                     </Left>
-    //                     <Right>
-    //                         <Icon name="person" onPress={
-    //                             () => {
-    //                                 navigation.navigate('Details', { id: item.id })
-    //                             }
-    //                         } />
-    //                     </Right>
-    //                 </ListItem>
-    //             }}
-    //             ItemSeparatorComponent={ItemSeparator}
-    //             keyExtractor={(item) => item.id.toString()}
-    //             ListEmptyComponent={EmptyList}
-
-    //         />
-    //     </View>
-
-    // )
-
 }
 
 export default Users;
@@ -91,33 +85,16 @@ const ItemSeparator = () => {
 //////////////////////////////////////
 const Paginator = (state) => {
     return (<ListItem>
-        <Button title="Previous" onPress={() => {
-            try {
-                const resolvePromise = async (action) => {
-                    dispatch(await action)
-                }
-                resolvePromise(Previous(state.page))
-            }
-            catch (err) { console.error(err) }
+        <Button title="Previous" onPress={PreviousPage
 
-        }
         }><Text>Previous</Text> </Button>
 
         <Button disabled={true} title={state.page.toString()}></Button>
 
-        <Button title="Next" onPress={() => {
-            try {
-                const resolvePromise = async (action) => {
-                    dispatch(await action)
-                }
-                resolvePromise(Next(state.page))
-            }
-            catch (err) { console.error(err) }
-
-        }
+        <Button title="Next" onPress={NextPage
         }></Button>
 
-    </ListItem>
+    </ListItem >
     )
     //////////////////////////////////////
 

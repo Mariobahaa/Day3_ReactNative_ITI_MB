@@ -64,16 +64,21 @@ export const Next = async (page) => {
         payload = await users.json();
     }
     catch (err) {
+        console.log("Error at Request (Next)");
         console.error(err);
     }
 
     if (payload == null || payload == [] || payload == {}) {
+        console.log("Going to default;")
         return { type: "GO_TO_DEFAULT" };
     }
 
+    console.log("Request Succeeded (Next)");
+
+    console.log(`payload: ${payload.data}`);
     return {
         type: "NEXT",
-        payload: null
+        payload: payload.data
     }
 
 }
@@ -90,17 +95,22 @@ export const Previous = async (page) => {
         payload = await users.json();
     }
     catch (err) {
+        console.log("Error at Request (Previous)");
+
         console.error(err);
     }
 
     if (payload == null || payload == [] || payload == {}) {
+        console.log("Going to default;")
         return { type: "GO_TO_DEFAULT" };
     }
 
+    console.log(`payload: ${payload.data}`);
 
+    console.log("Request Succeeded (Previous)");
     return {
         type: "PREVIOUS",
-        payload: null
+        payload: payload.data
     }
 
 }
