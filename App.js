@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
 import Details from './src/components/Details';
+import Create from './src/components/Create';
 import Users from './src/components/Users';
 import { UsersProvider } from './src/context/cont';
 import { NavigationContainer } from '@react-navigation/native'
@@ -45,6 +46,14 @@ export default class App extends Component {
               component={Details}
               options={{
                 title: 'Details',
+                headerTitleStyle: { textAlign: 'center' }
+              }}
+            />
+            <Stack.Screen
+              name="Create"
+              component={Create}
+              options={{
+                title: 'Create',
                 headerTitleStyle: { textAlign: 'center' }
               }}
             />

@@ -21,6 +21,10 @@ const Users = ({ navigation }) => {
 
     }, [state.page]);
 
+    AddUser = () => {
+        navigation.navigate('Create');
+    }
+
     NextPage = () => {
         try {
             const resolvePromise = async (action) => {
@@ -84,17 +88,22 @@ const ItemSeparator = () => {
 }
 //////////////////////////////////////
 const Paginator = (state) => {
-    return (<ListItem style={{ textAlign: 'center', justifyContent: 'center' }}>
+
+    return (<View><ListItem style={{ textAlign: 'center', justifyContent: 'center' }}>
         <Button title="Prev" style={{ margin: '5%' }} onPress={PreviousPage
 
         }></Button>
 
-        <Button style={{ margin: '5%' }} disabled={true} title={state.page.toString()}></Button>
+        <Button style={{ margin: '5%', }} disabled={true} title={state.page.toString()}></Button>
 
         <Button style={{ margin: '5%' }} title="Next" onPress={NextPage
         }></Button>
 
     </ListItem >
+        <ListItem style={{ justifyContent: 'flex-end' }}>
+            <Button title="Add+" onPress={AddUser}> </Button>
+        </ListItem>
+    </View>
     )
     //////////////////////////////////////
 
