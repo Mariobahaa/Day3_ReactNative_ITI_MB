@@ -26,7 +26,7 @@ const Users = ({ navigation }) => {
             const resolvePromise = async (action) => {
                 dispatch(await action)
             }
-            resolvePromise(Next())
+            resolvePromise(Next(state.page))
         }
         catch (err) { console.error(err) }
 
@@ -84,14 +84,14 @@ const ItemSeparator = () => {
 }
 //////////////////////////////////////
 const Paginator = (state) => {
-    return (<ListItem>
-        <Button title="Previous" onPress={PreviousPage
+    return (<ListItem style={{ textAlign: 'center', justifyContent: 'center' }}>
+        <Button title="Prev" style={{ margin: '5%' }} onPress={PreviousPage
 
-        }><Text>Previous</Text> </Button>
+        }></Button>
 
-        <Button disabled={true} title={state.page.toString()}></Button>
+        <Button style={{ margin: '5%' }} disabled={true} title={state.page.toString()}></Button>
 
-        <Button title="Next" onPress={NextPage
+        <Button style={{ margin: '5%' }} title="Next" onPress={NextPage
         }></Button>
 
     </ListItem >

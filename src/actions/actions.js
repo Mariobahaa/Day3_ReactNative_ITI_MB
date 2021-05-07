@@ -60,22 +60,23 @@ export const createUser = async (name, job) => {
 export const Next = async (page) => {
     let payload = null;
     try {
-        let users = await fetch(`https://reqres.in/api/users?page=${page + 1}`);
+        let users = await fetch(`https://reqres.in/api/users?page=${(page + 1)}`);
         payload = await users.json();
     }
     catch (err) {
         console.log("Error at Request (Next)");
         console.error(err);
     }
-
-    if (payload == null || payload == [] || payload == {}) {
+    console.log(page + 1);
+    console.log(payload.data);
+    if (payload.data == null || payload.data == [] || payload.data == {} || payload.data == [{}] || (payload.data).length == 0) {
         console.log("Going to default;")
         return { type: "GO_TO_DEFAULT" };
     }
 
     console.log("Request Succeeded (Next)");
 
-    console.log(`payload: ${payload.data[0]['id']}`);
+    //console.log(`payload: ${payload.data[0]['id']}`);
     return {
         type: "NEXT",
         payload: payload.data
@@ -99,8 +100,9 @@ export const Previous = async (page) => {
 
         console.error(err);
     }
+    console.log(payload.data);
 
-    if (payload == null || payload == [] || payload == {}) {
+    if (payload.data == null || payload.data == [] || payload.data == {} || payload.data == [{}]) {
         console.log("Going to default;")
         return { type: "GO_TO_DEFAULT" };
     }
